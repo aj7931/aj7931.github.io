@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A responsive professional portfolio with a built-in snake game for GitHub Pages.">
+  <title>AJ7931 | Professional Portfolio</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./game.js"></script>
+  <script defer src="./script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">AJ</span>
+      <div>
+        <p class="brand-eyebrow">Professional Portfolio</p>
+        <h1>AJ7931</h1>
+      </div>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false">
+      Menu
+    </button>
+
+    <nav class="site-nav" id="primary-navigation" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#games">Games</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section id="home" class="hero section card">
+      <div class="hero-copy">
+        <p class="section-kicker">Hello, I am AJ7931</p>
+        <h2>Building a calm, responsive portfolio with a polished Games corner.</h2>
+        <p class="section-copy">
+          This site is designed for GitHub Pages and keeps the code stack simple: HTML, CSS, and JavaScript only.
+        </p>
+      </div>
+
+      <div class="hero-panel">
+        <p class="mini-label">Focus</p>
+        <ul class="quick-facts">
+          <li>Responsive professional layout</li>
+          <li>Accessible top navigation</li>
+          <li>Built-in snake game</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="about" class="section card">
+      <p class="section-kicker">About</p>
+      <h2>Professional profile</h2>
+      <p class="section-copy">
+        [사람 확인 필요] Add a verified summary of background, strengths, and goals here.
+      </p>
+    </section>
+
+    <section id="experience" class="section card">
+      <p class="section-kicker">Experience</p>
+      <h2>Experience highlights</h2>
+      <div class="content-grid">
+        <article class="info-card">
+          <h3>Role summary</h3>
+          <p>[사람 확인 필요] Add confirmed role details, responsibilities, and impact.</p>
+        </article>
+        <article class="info-card">
+          <h3>Working style</h3>
+          <p>Delivering focused, reliable work with clear communication and strong follow-through.</p>
+        </article>
+        <article class="info-card">
+          <h3>Core strengths</h3>
+          <p>Frontend structure, responsive layout, usability, and careful iteration.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section card">
+      <p class="section-kicker">Projects</p>
+      <h2>Selected work</h2>
+      <div class="content-grid">
+        <article class="info-card">
+          <h3>Portfolio site</h3>
+          <p>A GitHub Pages-ready static website with a responsive layout and game section.</p>
+        </article>
+        <article class="info-card">
+          <h3>Project slot</h3>
+          <p>[사람 확인 필요] Add a verified project description here.</p>
+        </article>
+        <article class="info-card">
+          <h3>Project slot</h3>
+          <p>[사람 확인 필요] Add a verified project description here.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="research" class="section card">
+      <p class="section-kicker">Research</p>
+      <h2>Research or notes</h2>
+      <p class="section-copy">
+        [사람 확인 필요] If research content exists, summarize the verified work here. Otherwise keep this as a
+        professional notes area.
+      </p>
+    </section>
+
+    <section id="games" class="section card games-section">
+      <p class="section-kicker">Games</p>
+      <div class="section-heading">
+        <h2>Snake game</h2>
+        <p class="section-copy">
+          Use keyboard arrows, WASD, swipe gestures, or on-screen controls.
+        </p>
+      </div>
+
+      <div class="game-shell">
+        <div class="game-meta" aria-live="polite">
+          <span>Score: <strong id="score">0</strong></span>
+          <span>Best: <strong id="high-score">0</strong></span>
+          <span>Status: <strong id="game-status">Ready</strong></span>
+        </div>
+
+        <div class="game-board-wrap">
+          <div id="snake-board" class="snake-board" role="application" tabindex="0" aria-label="Snake game board"></div>
+        </div>
+
+        <div class="game-actions">
+          <button type="button" class="game-button" data-action="start">Start</button>
+          <button type="button" class="game-button" data-action="pause">Pause</button>
+          <button type="button" class="game-button" data-action="restart">Restart</button>
+        </div>
+
+        <div class="dpad" aria-label="Mobile directional controls">
+          <button type="button" class="dpad-button dpad-up" data-direction="up" aria-label="Move up">▲</button>
+          <button type="button" class="dpad-button dpad-left" data-direction="left" aria-label="Move left">◀</button>
+          <button type="button" class="dpad-button dpad-center" data-action="toggle" aria-label="Pause or resume">⏯</button>
+          <button type="button" class="dpad-button dpad-right" data-direction="right" aria-label="Move right">▶</button>
+          <button type="button" class="dpad-button dpad-down" data-direction="down" aria-label="Move down">▼</button>
+        </div>
+
+        <p class="game-help">
+          Arrow keys, WASD, and the on-screen buttons are supported. Swipe on the board if you prefer touch input.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="section card">
+      <p class="section-kicker">Contact</p>
+      <h2>Get in touch</h2>
+      <div class="content-grid">
+        <article class="info-card">
+          <h3>Email</h3>
+          <p>[사람 확인 필요] Add a verified email address or contact method.</p>
+        </article>
+        <article class="info-card">
+          <h3>Links</h3>
+          <p>[사람 확인 필요] Add verified portfolio, GitHub, or social links.</p>
+        </article>
+        <article class="info-card">
+          <h3>Availability</h3>
+          <p>[사람 확인 필요] Add verified availability or collaboration details.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© AJ7931</p>
+  </footer>
+</body>
+</html>
