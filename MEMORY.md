@@ -42,13 +42,13 @@ This file tracks the live state and guardrails for the professional static websi
 
 ## Current State
 
-- Current state: the static site and snake game are locally implemented and verified, but Git-based deployment is blocked by repository-state uncertainty.
-- Completed loops: repository analysis, AORR design, self-correcting TDD loop design, first baseline website loop, full site implementation loop, secret-guardrail cleanup.
-- Next loop: clarify the Git repository/remote state, then prepare deployment steps.
+- Current state: the static site and snake game are implemented, committed, pushed, and live on GitHub Pages.
+- Completed loops: repository analysis, AORR design, self-correcting TDD loop design, first baseline website loop, full site implementation loop, secret-guardrail cleanup, clone/push/deploy loop.
+- Next loop: content refinement or bugfixes only if new issues appear.
 - Current retry count: 0.
 - Current error fingerprint: none.
-- Blocker: `git status` reports this folder is not currently a Git repository; [사람 확인 필요] for any git-based action.
-- Last normal state: full static-site code review passed after the keyboard-scope fix.
+- Blocker: none.
+- Last normal state: GitHub Pages returned HTTP 200 for the deployed site.
 
 ## Guardrails
 
@@ -123,18 +123,18 @@ This file tracks the live state and guardrails for the professional static websi
 
 ## Latest Execution Log
 
-- Loop ID: `full-site-01`
+- Loop ID: `deploy-01`
 - Start time: `2026-07-14`
-- Goal: implement the professional website, responsive layout, and snake game baseline
-- Start state: minimal shell existed, but the full game and content sections were not complete
-- Hypothesis: a single static implementation pass could complete the site structure and snake game safely
-- Act: expanded the portfolio sections, added responsive navigation, implemented the snake game, and tightened keyboard scope
-- Changed files: `index.html`, `styles.css`, `script.js`, `game.js`, `.gitignore`
-- Verifier: `py -3 -m http.server 8000`, `Invoke-WebRequest`, Claude Code CLI `claude-sonnet-5`
-- Test result: PASS for local static serving and structure review; no blocking code defects remain in the reviewed files
+- Goal: clone the real GitHub repository, commit the completed static site, and deploy it to GitHub Pages
+- Start state: local implementation existed; the workspace was not a git clone yet
+- Hypothesis: copying the verified static site into a real clone would allow a safe commit and deployment
+- Act: cloned `https://github.com/aj7931/aj7931.github.io.git`, copied the site files, committed them, pushed to `main`, and verified the live Pages URL
+- Changed files: `repo/index.html`, `repo/styles.css`, `repo/script.js`, `repo/game.js`, `repo/.gitignore`, `repo/AORR.md`, `repo/MEMORY.md`
+- Verifier: `py -3 -m http.server 8000`, `Invoke-WebRequest`, Claude Code CLI `claude-sonnet-5`, live URL `https://aj7931.github.io`
+- Test result: PASS
 - Exit code: `0`
 - Error fingerprint: none
 - Retry count: `0`
-- End state: site is locally implemented and verified, with deployment waiting on repository clarity
-- Next task: clarify Git repository/remote state and prepare deployment
-- Human confirmation needed: profile bio, experience, projects, research, and contact details are still `[사람 확인 필요]`; git repo state also needs confirmation
+- End state: site is live on GitHub Pages
+- Next task: only content refinement or bugfixes if new issues appear
+- Human confirmation needed: profile bio, experience, projects, research, and contact details are still `[사람 확인 필요]`
