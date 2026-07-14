@@ -25,6 +25,8 @@
       this.touchStart = null;
       this.hasBoard = Boolean(root);
       this.shell = root ? root.closest('.game-shell') : null;
+      this.effectLayer = null;
+      this.effectTimer = null;
 
       if (!this.hasBoard) {
         return;
@@ -63,7 +65,10 @@
         fragment.appendChild(cell);
         this.cells.push(cell);
       }
+      this.effectLayer = document.createElement('div');
+      this.effectLayer.className = 'snake-effects';
       this.root.appendChild(fragment);
+      this.root.appendChild(this.effectLayer);
     }
 
     bindEvents() {
@@ -240,6 +245,7 @@
 
     reset(clearScore) {
       this.stopLoop();
+      this.clearEffects();
       this.direction = DIRECTIONS.right;
       this.nextDirection = DIRECTIONS.right;
       this.snake = [
@@ -293,6 +299,7 @@
         this.score += 10;
         this.highScore = Math.max(this.highScore, this.score);
         this.writeHighScore(this.highScore);
+        this.spawnEatEffect(nextHead);
         this.food = this.spawnFood();
       } else {
         this.snake.pop();
@@ -333,6 +340,56 @@
 
       const index = Math.floor(Math.random() * available.length);
       return available[index] || { x: 0, y: 0 };
+    }
+
+    clearEffects() {
+      if (this.effectTimer !== null) {
+        window.clearTimeout(this.effectTimer);
+        this.effectTimer = null;
+      }
+      if (this.effectLayer) {
+        this.effectLayer.innerHTML = '';
+      }
+    }
+
+    spawnEatEffect(point) {
+      if (!this.effectLayer) {
+        return;
+      }
+
+      const boardRect = this.root.getBoundingClientRect();
+      const cellSize = boardRect.width / GRID_SIZE;
+      const centerX = (point.x + 0.5) * cellSize;
+      const centerY = (point.y + 0.5) * cellSize;
+
+      this.clearEffects();
+
+      const pulse = document.createElement('span');
+      pulse.className = 'snake-pulse';
+      pulse.style.left = `${centerX}px`;
+      pulse.style.top = `${centerY}px`;
+      this.effectLayer.appendChild(pulse);
+
+      const particleCount = 8;
+      for (let i = 0; i < particleCount; i += 1) {
+        const particle = document.createElement('span');
+        particle.className = 'snake-particle';
+        const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.35;
+        const distance = cellSize * (0.85 + Math.random() * 1.15);
+        particle.style.left = `${centerX}px`;
+        particle.style.top = `${centerY}px`;
+        particle.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+        particle.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+        particle.style.animationDelay = `${Math.random() * 90}ms`;
+        this.effectLayer.appendChild(particle);
+      }
+
+      this.effectTimer = window.setTimeout(() => {
+        if (this.effectLayer) {
+          this.effectLayer.innerHTML = '';
+        }
+        this.effectTimer = null;
+      }, 720);
     }
 
     updateStatus(value) {
